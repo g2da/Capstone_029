@@ -1,0 +1,16 @@
+spring:
+  h2:
+    console:
+      enabled: true
+  jpa:
+    defer-datasource-initialization: true
+    show-sql: true
+    properties:
+      hibernate:
+        format_sql: true
+  datasource:
+    url: jdbc:mysql://localhost:3306/abeec
+    username: root
+    password: 980415
+    initialization-mode: always
+
