@@ -134,8 +134,10 @@ id 의 중복을 검사한다.
 - **request** : json - user 정보 ( id,password,age,phone,name)
 - **response** : 유효검사(validation)통과시 - user 정보 (id,password,age,phone,name,level,words_count)
   ![](https://images.velog.io/images/yoojinjangjang/post/5d668986-c11a-4d03-9117-45a66656352e/image.png)
-  유효검사 미통과시 - 400에러와 해당 에러 field명,에러메세지
+
+  유효검사 미통과시 - 400에러와 해당 에러 field명,에러메세지  
   ![](https://images.velog.io/images/yoojinjangjang/post/a2eb8cd4-6763-460b-86a3-fbd3c16c18f1/image.png)
+
   > 해당 유효검사 항목은 밑의 **user dto** 부분에서 확인 가능하다.
 
 #### login 메소드 : `localhost:8080/abeec/login?id=""&password=""` 의 get 요청
@@ -147,7 +149,7 @@ id 의 중복을 검사한다.
 
 ### 2] 단어찾기
 
-[참고](https://bohyeon-n.github.io/deploy/web/image-upload.html)
+[참고](https://bohyeon-n.github.io/deploy/web/image-upload.html)  
 [참고](https://eastflag.co.kr/fullstack/rest-with-spring/spring-rest_image/)
 
 ### 3] VocaController
@@ -156,9 +158,14 @@ id 의 중복을 검사한다.
 
 #### GetVocaList 메소드 : localhost:8080/abeec/voca_list/{id}의 get 요청
 
-해당 id의 사용자가 학습한 단어 리스트를 반환한다. -** request**: String 형태의 id - path variable -** respone**:
+해당 id의 사용자가 학습한 단어 리스트를 반환한다.
 
-1. user id 가 db내에 존재시 - 단어리스트 (english,korean,image)![](https://images.velog.io/images/yoojinjangjang/post/4d9bf219-0008-4558-bc1d-5e60e068e512/image.png)
+- **request** : String 형태의 id - path variable
+- **respone** :
+
+1. user id 가 db내에 존재시 - 단어리스트 (english,korean,image)  
+   ![](https://images.velog.io/images/yoojinjangjang/post/4d9bf219-0008-4558-bc1d-5e60e068e512/image.png)
+
 2. user id 가 db내에 존재하지 않을 시 - 400 에러
 
 ---
