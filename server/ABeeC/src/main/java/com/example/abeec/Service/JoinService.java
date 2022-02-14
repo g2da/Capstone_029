@@ -4,14 +4,21 @@ import com.example.abeec.dto.UserDto;
 import com.example.abeec.entity.User;
 import com.example.abeec.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+
+import javax.persistence.EntityManager;
 
 @Service
 @RequiredArgsConstructor
 public class JoinService {
 
     private final UserRepository userRepository;
+
+    @Autowired
+    private EntityManager entityManager;
+
 
     //db에서 id가진 user 여부 확인
     @Transactional
@@ -24,16 +31,20 @@ public class JoinService {
         }
     }
 
-    //db에 user 저장( 회원가입 정보 db 기록 )
-    @Transactional
-    public UserDto saveUser(UserDto userReq){
 
+    //db에 user 저장( 회원가입 정보 db 기록 )
+    public UserDto saveUser(UserDto userReq){
         User user = userReq.toEntity();
-        user.setLevel(1); // user 의 level 1로 초기화
-        user.setWordsCount(0); //user 의 학습 개수 0으로 초기화
-        User resultUser = userRepository.save(user);
-        return entityToDto(resultUser);
+
+        userRepository.save(user);
+
+        entityManager.clear(); //캐시 clear --> 데이터베이스와 캐시의 불일치 맞쳐주기
+
+        User resultUser = userRepository.findById(user.getId()).get(); // 반환을 위해 저장한 엔티티 호출
+
+        return entityToDto(resultUser); // dto로 변환하여 반환
     }
+
 
     // user id 와 password 를 비교
     @Transactional
@@ -58,6 +69,7 @@ public class JoinService {
         userDto.setPhone(user.getPhone());
         userDto.setLevel(user.getLevel());
         userDto.setWordsCount(user.getWordsCount());
+
         return userDto;
     }
 }

@@ -47,6 +47,7 @@ public class JoinController {
      */
     @PostMapping("/join")
     public ResponseEntity join(@Valid @RequestBody UserDto userReq, BindingResult bindingResult){
+
         if(bindingResult.hasErrors()){ //validation 오류에 대한 설명을 표시해주기 위한 부분
             StringBuilder sb = new StringBuilder();
             bindingResult.getAllErrors().forEach(error->{
@@ -61,6 +62,7 @@ public class JoinController {
         }
 
         var result = joinService.saveUser(userReq);
+
         return ResponseEntity.status(HttpStatus.CREATED).body(result);
     }
 
@@ -77,7 +79,6 @@ public class JoinController {
                     @RequestParam  @NotNull String id,
                      @RequestParam String password
                     ){
-        System.out.println(id);
         return joinService.loginCheck(id,password);
     }
 

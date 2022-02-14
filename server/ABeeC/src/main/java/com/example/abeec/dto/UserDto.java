@@ -10,6 +10,7 @@ import javax.validation.constraints.*;
 @NoArgsConstructor
 public class UserDto {
 
+
     @NotBlank
     private String id;
 
@@ -33,7 +34,7 @@ public class UserDto {
     private Integer level;
 
     public User toEntity(){ //dto -> entity
-        return new User(id,name,password,age,wordsCount,level,phone);
+        return new User(id,name,password,age,phone);
     }
 
 }

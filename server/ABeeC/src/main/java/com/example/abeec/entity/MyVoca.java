@@ -12,10 +12,10 @@ import javax.persistence.*;
 public class MyVoca {
 
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-
+    @Column(name = "user_id")
     private String userId;
 
     @ManyToOne
@@ -25,4 +25,7 @@ public class MyVoca {
     @Lob
     @Column(columnDefinition="BLOB")
     private byte[] image;
+
+
+
 }
