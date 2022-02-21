@@ -15,7 +15,8 @@ class JoinServiceTest {
     private JoinService joinService;
     @Autowired
     private UserRepository userRepository;
-    @Test
+
+/*
     void test(){
         UserDto user = new UserDto();
         user.setName("yoojin");
@@ -30,10 +31,11 @@ class JoinServiceTest {
 
         System.out.println(result);
     }
+*/
 
-    @Test
+   /* @Test
     void logintest(){
-        var result = joinService.loginCheck(null,"980415");
-        System.out.println(result);
-    }
+      //  var result = joinService.loginCheck(null,"980415");
+      //  System.out.println(result);
+    }*/
 }

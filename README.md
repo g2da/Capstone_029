@@ -32,6 +32,9 @@ request url 이랑 요청 방식, 요청 정보는 벨로그에 작성해뒀어�
 
 - 2/2 일자 : ID중복검사, 회원가입, 로그인 기능 개발 -- **유진** [안되는거 말해주세요 이상한거도 말해주세요 ]
 - 2/14일자 : 단어장 개발
+- 2/21일자 : 서버 배포 ( DB 서버& 웹서버 ) -- 퍼블릭IP 카톡방 공유, 서버 배포 관련 내용  
+  [벨로그 - EC2](https://velog.io/@yoojinjangjang/AWS-Spring-%ED%94%84%EB%A1%9C%EC%A0%9D%ED%8A%B8-%EB%B0%B0%ED%8F%AC-EC2)  
+  [벨로그 - RDS](https://velog.io/@yoojinjangjang/AWS-EC2-Spring-%ED%94%84%EB%A1%9C%EC%A0%9D%ED%8A%B8-%EB%B0%B0%ED%8F%AC)
 
 # Server API
 
@@ -120,14 +123,14 @@ id값을 받아서 해당 사용자를 user 데이터베이스에서 찾은뒤 �
 
 회원가입과 아이디 중복검사,로그인의 컨트롤러를 제공하는 클래스이다.
 
-#### ** idCheck 메소드** : localhost:8080/abeec/join/{id} 의 **get**요청
+#### ** idCheck 메소드** : 퍼블릭IP:8080/abeec/join/{id} 의 **get**요청
 
 id 의 중복을 검사한다.
 
 - **request** : String 형태의 id - path variable
 - **response** : 중복시 "another id is required", 중복이 아닐시 id
 
-#### join 메소드 : localhost:8080/abeec/join 의 **post**요청
+#### join 메소드 : 퍼블릭IP:8080/abeec/join 의 **post**요청
 
 회원가입 기능을 수행한다.
 
@@ -140,7 +143,7 @@ id 의 중복을 검사한다.
 
   > 해당 유효검사 항목은 밑의 **user dto** 부분에서 확인 가능하다.
 
-#### login 메소드 : `localhost:8080/abeec/login?id=""&password=""` 의 get 요청
+#### login 메소드 : `퍼블릭IP:8080/abeec/login?id=""&password=""` 의 get 요청
 
 로그인 기능을 수행한다.
 
@@ -156,7 +159,7 @@ id 의 중복을 검사한다.
 
 각 사용자가 학습한 단어들을 반환해주는 클래스이다.
 
-#### GetVocaList 메소드 : localhost:8080/abeec/voca_list/{id}의 get 요청
+#### GetVocaList 메소드 : 퍼블릭IP:8080/abeec/voca_list/{id}의 get 요청
 
 해당 id의 사용자가 학습한 단어 리스트를 반환한다.
 

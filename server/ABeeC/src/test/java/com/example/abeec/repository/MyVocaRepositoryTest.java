@@ -21,6 +21,7 @@ public class MyVocaRepositoryTest {
     private VocaRepository vocaRepository;
 
 
+
     @Test
     void dbTest(){
         Voca voca = new Voca();
@@ -33,17 +34,17 @@ public class MyVocaRepositoryTest {
 
     @Test
     @Transactional
-    @Rollback(false) //test 롤백 막기
+   // @Rollback(false) //test 롤백 막기
     void myvocaTest(){
         MyVoca myVoca = new MyVoca();
-        myVoca.setVoca(vocaRepository.findById(1L).get());
-        myVoca.setUserId("yoojin");
+        myVoca.setVoca(vocaRepository.findById(5L).get());
+        myVoca.setUserId("yoojinjangjang");
 
         myVocaRepository.save(myVoca);
 
         MyVoca myVoca1  = new MyVoca();
-        myVoca1.setVoca(vocaRepository.findById(2L).get());
-        myVoca1.setUserId("yoojin");
+        myVoca1.setVoca(vocaRepository.findById(6L).get());
+        myVoca1.setUserId("yoojinjangjang");
         myVocaRepository.save(myVoca1);
 
 
@@ -61,5 +62,6 @@ public class MyVocaRepositoryTest {
             System.out.println(myVoca.getImage());
         });
     }
+
 
 }

@@ -9,8 +9,8 @@ spring:
       hibernate:
         format_sql: true
   datasource:
-    url: jdbc:mysql://localhost:3306/abeec
-    username: root
-    password: 980415
+    url: jdbc:mysql://spring-abeec.ciqmuaoilajl.us-east-1.rds.amazonaws.com/abeec
+    username: yoojinjangjang
+    password: aledma123!
     initialization-mode: always
 
