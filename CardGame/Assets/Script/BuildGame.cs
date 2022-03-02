@@ -8,6 +8,7 @@ using System.IO;
 public class BuildGame : MonoBehaviour
 {
     public static Sprite[] Spr;
+    public GameObject canvas;
   
     int number = 3;
     float px = -3.0f; //프리팹 놓을 좌표 x
@@ -17,7 +18,8 @@ public class BuildGame : MonoBehaviour
 
     // Start is called before the first frame update  
     void Start()
-    {  
+    {
+        canvas = GameObject.Find("Canvas");
         buildgame(8); //게임 난이도에 따라 매개변수 넘기는 값 변경할 예정
     }
 
@@ -60,7 +62,9 @@ public class BuildGame : MonoBehaviour
         for (int i = 0; i<level; i++) //카드 프리팹 생성
         {
             GameObject card = Instantiate(cardPrefab) as GameObject;
+            card.transform.SetParent(canvas.transform);
             Prefabs.Add(card);
+            
         }
 
         for(int i = 0; i<level; i++) // 각 카드 프리팹.name에 랜덤 번호 부여

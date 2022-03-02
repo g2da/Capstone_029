@@ -23,7 +23,7 @@ public class rotation1 : MonoBehaviour
 
     void Start()
     {
-        gameObject.AddComponent<CardInfo>();
+        
         rend = GetComponent<SpriteRenderer>();
         thisCard = GetComponent<CardInfo>();
         director = GameObject.Find("GameDirector");
@@ -43,10 +43,13 @@ public class rotation1 : MonoBehaviour
     {
         
         f_c = director.GetComponent<GameDirector>().f_c;
-        //if (coroutineAllowed && f_c < 2) //flip count 뒤집은 횟수가 2가 되면 클릭해도 뒤집기 금지
-        if (coroutineAllowed)
+        if (coroutineAllowed && f_c < 2) //flip count 뒤집은 횟수가 2가 되면 클릭해도 뒤집기 금지
+        //if (coroutineAllowed)
             {
+            
             StartCoroutine(RotateCard());
+            director.GetComponent<GameDirector>().selected_Card(thisCard.wordImage);
+            
         }
     }
 
