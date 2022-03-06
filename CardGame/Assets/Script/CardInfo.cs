@@ -8,7 +8,7 @@ using UnityEngine;
 public class CardInfo : MonoBehaviour
 {
     public string cardName = null;
-    public int cardStatus =0;
+    //public int cardStatus =0;
     
 
     private SpriteRenderer rend;
@@ -19,6 +19,8 @@ public class CardInfo : MonoBehaviour
     {
 
     }
+
+   
 
 }
 
