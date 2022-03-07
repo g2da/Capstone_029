@@ -398,7 +398,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 37e292c4107d5024b9c027f5ed032728, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  canvas: {fileID: 0}
+  canvas: {fileID: 905966641}
   cardPrefab: {fileID: 4676789207061010108, guid: 510ee172f10ee94469cc9403ae64cb37,
     type: 3}
 --- !u!4 &1476288723

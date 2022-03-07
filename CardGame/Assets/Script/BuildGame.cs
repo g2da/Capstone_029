@@ -101,7 +101,7 @@ public class BuildGame : MonoBehaviour
             {
                 //GameObject card = Instantiate(cardPrefab) as GameObject; //프리팹 생성
                 Prefabs[p].transform.position = new Vector3(px1, py1, 0); //프리팹 배치하기
-                
+             
                 
                 py1 -= 2.7f;
                 p += 1;
