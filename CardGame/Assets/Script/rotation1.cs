@@ -13,11 +13,11 @@ public class rotation1 : MonoBehaviour
     [SerializeField] //private 변수를 inspector에서 접근가능하게 해줌
     private Sprite backSprite;
     [SerializeField]
-    int f_c;
+    int touch_c;
 
     private bool coroutineAllowed, facedUp;
     GameObject director;
-    
+
 
 
 
@@ -39,7 +39,7 @@ public class rotation1 : MonoBehaviour
 
     void Update()
     {
-        f_c = director.GetComponent<GameDirector>().f_c;
+        touch_c = director.GetComponent<GameDirector>().touch_c;
     }
 
 
@@ -47,13 +47,12 @@ public class rotation1 : MonoBehaviour
     private void OnMouseDown()
     {
 
-        f_c = director.GetComponent<GameDirector>().f_c;
-        if (coroutineAllowed && f_c < 2 && facedUp == false ) //flip count 뒤집은 횟수가 2가 되면 클릭해도 뒤집기 금지
-                                                                     //if (coroutineAllowed)
+        touch_c = director.GetComponent<GameDirector>().touch_c;
+        if (coroutineAllowed && touch_c < 2 && facedUp == false) //flip count 뒤집은 횟수가 2가 되면 클릭해도 뒤집기 금지
+                                                                 //if (coroutineAllowed)
         {
-
-            StartCoroutine(RotateCard_Front());
             director.GetComponent<GameDirector>().selected_Card(thisCard.wordImage);
+            StartCoroutine(RotateCard_Front());
 
         }
     }
@@ -67,11 +66,6 @@ public class rotation1 : MonoBehaviour
             if (i == 90f)
             {
                 rend.sprite = thisCard.wordImage;
-                //thisCard.cardStatus = 1;
-
-                director.GetComponent<GameDirector>().Flip_Count(); //뒤집어지면서 flip count를 증가시킴
-
-
             }
             yield return new WaitForSeconds(0.01f);
         }
@@ -79,25 +73,25 @@ public class rotation1 : MonoBehaviour
         facedUp = !facedUp;
     }
 
-    public IEnumerator RotateCard_back() 
+    public IEnumerator RotateCard_back()
     {
         coroutineAllowed = false;
         yield return new WaitForSeconds(3.0f);
         for (float i = 180f; i >= 0f; i -= 10f)
+        {
+            transform.rotation = Quaternion.Euler(0f, i, 0f);
+            if (i == 90f)
             {
-                transform.rotation = Quaternion.Euler(0f, i, 0f);
-                if (i == 90f)
-                {
-                    rend.sprite = backSprite;
-                    //thisCard.cardStatus = 0;
-
-                }
-                yield return new WaitForSeconds(0.01f);
+                rend.sprite = backSprite;
             }
-        
+            yield return new WaitForSeconds(0.01f);
+        }
+
         coroutineAllowed = true;
 
         facedUp = !facedUp;
+
+        director.GetComponent<GameDirector>().Count_minus();
     }
 
     /*private IEnumerator RotateCard()
