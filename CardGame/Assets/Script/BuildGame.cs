@@ -11,8 +11,8 @@ public class BuildGame : MonoBehaviour
     public GameObject canvas;
   
     int number = 3;
-    float px = -3.0f; //프리팹 놓을 좌표 x
-    float py = 2.7f;  //프리팹 놓을 좌표 y
+    float px = -2.0f; //프리팹 놓을 좌표 x
+    float py = 1.8f;  //프리팹 놓을 좌표 y
 
     public GameObject cardPrefab;
 
@@ -54,7 +54,8 @@ public class BuildGame : MonoBehaviour
     {
         List<GameObject> Prefabs = new List<GameObject>();
 
-        Spr = Resources.LoadAll<Sprite>("audi"); //이미지 폴더 내 파일 로드
+        Spr = Resources.LoadAll<Sprite>("audi_resize"); //이미지 폴더 내 파일 로드
+
 
         int[] rand_image = randomCard(Spr.Length, level/2);
         int[] rand_number = randomCard(8, level);
@@ -76,8 +77,8 @@ public class BuildGame : MonoBehaviour
         int j = 0;
         for (int i =0; i < level; i+=2)
         {
-            Prefabs[rand_number[i]].GetComponent<CardInfo>().wordImage = Spr[rand_image[j]];
-            Prefabs[rand_number[i+1]].GetComponent<CardInfo>().wordImage = Spr[rand_image[j]];
+            Prefabs[rand_number[i]].transform.GetChild(0).GetComponent<CardInfo>().wordImage = Spr[rand_image[j]];
+            Prefabs[rand_number[i+1]].transform.GetChild(0).GetComponent<CardInfo>().wordImage = Spr[rand_image[j]];
             j++;
         }
 
@@ -109,7 +110,7 @@ public class BuildGame : MonoBehaviour
             px1 += 4.6f;
         }
 
-        float py2 = 1.35f;
+        float py2 = 0.45f;
         float px2 = px + 2.3f;
         for (int i = 0; i < number - 1; i++)
         {
@@ -120,4 +121,6 @@ public class BuildGame : MonoBehaviour
             p += 1;
         }
     }
+
+
 }

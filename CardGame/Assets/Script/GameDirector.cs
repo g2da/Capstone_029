@@ -28,7 +28,7 @@ public class GameDirector : MonoBehaviour
         {
             Vector2 pos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
             RaycastHit2D hit = Physics2D.Raycast(pos, Vector2.zero);
-
+            
             hit_ob[touch_c] = hit.transform.gameObject;
 
             Debug.Log(hit.transform.gameObject.name);

@@ -46,8 +46,9 @@ public class rotation1 : MonoBehaviour
 
     private void OnMouseDown()
     {
-
+        Debug.Log(touch_c);
         touch_c = director.GetComponent<GameDirector>().touch_c;
+        
         if (coroutineAllowed && touch_c < 2 && facedUp == false) //flip count 뒤집은 횟수가 2가 되면 클릭해도 뒤집기 금지
                                                                  //if (coroutineAllowed)
         {
@@ -66,6 +67,10 @@ public class rotation1 : MonoBehaviour
             if (i == 90f)
             {
                 rend.sprite = thisCard.wordImage;
+                rend.transform.localScale = new Vector2(0.45f, 0.65f); //640 *427 기준
+                // 사진의 크기에 따라 다른 스케일이 적용되어야 할 것 같다. 
+                // 휴대폰 촬영 사진의 사이즈를 미리 전처리후 입력되어야 할 듯 싶다. 
+
             }
             yield return new WaitForSeconds(0.01f);
         }
@@ -83,6 +88,7 @@ public class rotation1 : MonoBehaviour
             if (i == 90f)
             {
                 rend.sprite = backSprite;
+                rend.transform.localScale = new Vector2(0.93f, 0.97f);
             }
             yield return new WaitForSeconds(0.01f);
         }

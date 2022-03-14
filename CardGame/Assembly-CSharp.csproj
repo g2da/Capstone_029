@@ -56,6 +56,7 @@
     <Compile Include="Assets\Script\BuildGame.cs" />
     <Compile Include="Assets\Script\CardInfo.cs" />
     <Compile Include="Assets\Script\GameDirector.cs" />
+    <Compile Include="Assets\Script\Timer.cs" />
     <Compile Include="Assets\Script\rotation1.cs" />
   </ItemGroup>
   <ItemGroup>
