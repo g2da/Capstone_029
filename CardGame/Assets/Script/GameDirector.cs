@@ -9,6 +9,7 @@ public class GameDirector : MonoBehaviour
     Sprite[] check_card = new Sprite[2];     //뒤집어진 카드의 이미지 저장
 
     public int touch_c = 0;
+    public int score = 0;
 
     // Start is called before the first frame update
     void Start()
@@ -49,6 +50,7 @@ public class GameDirector : MonoBehaviour
             if (check_card[0] == check_card[1]) //이미지 비교
             {
                 touch_c = 0;
+                score += 1; // 짝 맞으면 점수 1점씩 더함 총 8카드에서는 4점이 최대
             }
             else
             {

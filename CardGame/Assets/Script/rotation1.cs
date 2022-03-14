@@ -34,6 +34,8 @@ public class rotation1 : MonoBehaviour
         coroutineAllowed = true;
         facedUp = false;
 
+        StartCoroutine(start_rotation());
+
 
     }
 
@@ -100,46 +102,42 @@ public class rotation1 : MonoBehaviour
         director.GetComponent<GameDirector>().Count_minus();
     }
 
-    /*private IEnumerator RotateCard()
+    public IEnumerator start_rotation()
     {
         coroutineAllowed = false;
-        if (!facedUp)
+        for (float i = 0f; i <= 180f; i += 10f)
         {
-            for (float i = 0f; i <= 180f; i += 10f)
+            transform.rotation = Quaternion.Euler(0f, i, 0f);
+            if (i == 90f)
             {
-                transform.rotation = Quaternion.Euler(0f, i, 0f);
-                if (i == 90f)
-                {
-                    rend.sprite = thisCard.wordImage;
-                    //thisCard.cardStatus = 1;
-
-                    director.GetComponent<GameDirector>().Flip_Count(); //뒤집어지면서 flip count를 증가시킴
-
-
-                }
-                yield return new WaitForSeconds(0.01f);
+                rend.sprite = thisCard.wordImage;
+                rend.transform.localScale = new Vector2(0.45f, 0.65f);
             }
+            yield return new WaitForSeconds(0.01f);
+        }
+        coroutineAllowed = true;
+        facedUp = !facedUp;
+
+        yield return new WaitForSeconds(1.3f);
+
+        coroutineAllowed = false;
+
+        for (float i = 180f; i >= 0f; i -= 10f)
+        {
+            transform.rotation = Quaternion.Euler(0f, i, 0f);
+            if (i == 90f)
+            {
+                rend.sprite = backSprite;
+                rend.transform.localScale = new Vector2(0.93f, 0.97f);
+
+            }
+            yield return new WaitForSeconds(0.01f);
         }
 
-        else if (facedUp)
-        {
-            for (float i = 180f; i >= 0f; i -= 10f)
-            {
-                transform.rotation = Quaternion.Euler(0f, i, 0f);
-                if (i == 90f)
-                {
-                    rend.sprite = backSprite;
-                    //thisCard.cardStatus = 0;
-                    
-                }
-                yield return new WaitForSeconds(0.01f);
-            }
-        }
         coroutineAllowed = true;
 
         facedUp = !facedUp;
-    }
 
-    // Update is called once per frame*/
+    }
 
 }
