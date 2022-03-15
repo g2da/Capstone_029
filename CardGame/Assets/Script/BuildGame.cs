@@ -16,11 +16,13 @@ public class BuildGame : MonoBehaviour
 
     public GameObject cardPrefab;
 
+    public int level = 8; // 레벨 설정
+
     // Start is called before the first frame update  
     void Start()
     {
         canvas = GameObject.Find("Canvas");
-        buildgame(8); //게임 난이도에 따라 매개변수 넘기는 값 변경할 예정
+        buildgame(level); //게임 난이도에 따라 매개변수 넘기는 값 변경할 예정
     }
 
     // Update is called once per frame

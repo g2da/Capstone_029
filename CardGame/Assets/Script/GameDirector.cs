@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GameDirector : MonoBehaviour
 {
@@ -10,6 +11,7 @@ public class GameDirector : MonoBehaviour
 
     public int touch_c = 0;
     public int score = 0;
+
 
     // Start is called before the first frame update
     void Start()
@@ -51,6 +53,10 @@ public class GameDirector : MonoBehaviour
             {
                 touch_c = 0;
                 score += 1; // 짝 맞으면 점수 1점씩 더함 총 8카드에서는 4점이 최대
+                if(score == GetComponent<BuildGame>().level / 2)
+                {
+                    Invoke("gameOver", 1);
+                }
             }
             else
             {
@@ -81,5 +87,10 @@ public class GameDirector : MonoBehaviour
         check_card[touch_c] = worldImage;
     }
 
+    void gameOver()
+    {
+        SceneManager.LoadScene("GameOver");
+        
+    }
 
 }
