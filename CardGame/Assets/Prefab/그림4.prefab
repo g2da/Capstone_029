@@ -28,8 +28,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1103134793383023173}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.0341, y: 0.0034, z: 0}
-  m_LocalScale: {x: 0.9305023, y: 0.97780514, z: 1}
+  m_LocalPosition: {x: -0.005, y: 0.0034, z: 0}
+  m_LocalScale: {x: 0.95139647, y: 0.97780514, z: 1}
   m_Children: []
   m_Father: {fileID: 4676789207061010111}
   m_RootOrder: 0
@@ -156,6 +156,7 @@ GameObject:
   - component: {fileID: 4676789207061010111}
   - component: {fileID: 1023958358086294136}
   - component: {fileID: 6585012533609732157}
+  - component: {fileID: 3159145209389795654}
   m_Layer: 0
   m_Name: "\uADF8\uB9BC4"
   m_TagString: Untagged
@@ -171,8 +172,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4676789207061010108}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -2.3899999, y: -0.8185295, z: 0}
-  m_LocalScale: {x: 0.75, y: 0.75, z: 1}
+  m_LocalPosition: {x: -2.2825, y: -0.9211, z: 0}
+  m_LocalScale: {x: 0.6906362, y: 0.6874429, z: 1}
   m_Children:
   - {fileID: 7307947611540061051}
   m_Father: {fileID: 0}
@@ -258,3 +259,14 @@ PolygonCollider2D:
       - {x: -0.91341054, y: -1.6421614}
       - {x: 1.0160114, y: -1.6490016}
       - {x: 1.7829727, y: -0.015241623}
+--- !u!210 &3159145209389795654
+SortingGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4676789207061010108}
+  m_Enabled: 1
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 1

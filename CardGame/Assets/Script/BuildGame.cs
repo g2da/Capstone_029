@@ -10,13 +10,11 @@ public class BuildGame : MonoBehaviour
     public static Sprite[] Spr;
     public GameObject canvas;
   
-    int number = 3;
-    float px = -2.0f; //프리팹 놓을 좌표 x
-    float py = 1.8f;  //프리팹 놓을 좌표 y
+    
 
     public GameObject cardPrefab;
 
-    public int level = 8; // 레벨 설정
+    public int level =8; // 레벨 설정
 
     // Start is called before the first frame update  
     void Start()
@@ -60,7 +58,7 @@ public class BuildGame : MonoBehaviour
 
 
         int[] rand_image = randomCard(Spr.Length, level/2);
-        int[] rand_number = randomCard(8, level);
+        int[] rand_number = randomCard(level, level);
 
         for (int i = 0; i<level; i++) //카드 프리팹 생성
         {
@@ -92,9 +90,25 @@ public class BuildGame : MonoBehaviour
     {
 
         List<GameObject> Prefabs = prefab_generator(level);
+        if (level == 8)
+        {
+            buildgameEasy(Prefabs);
+        }
+        else if(level == 12)
+        {
+            buildGameNormal(Prefabs);
+        }
+        
+
+        
+    }
+    void buildgameEasy(List<GameObject> Prefabs)
+    {
+        int number = 3;
+        float px = -2.0f; //프리팹 놓을 좌표 x
+        float py = 2.5f;  //프리팹 놓을 좌표 y
 
         float px1 = px;
-
         int p = 0;
         for (int j = 0; j < 2; j++)
         {
@@ -104,25 +118,68 @@ public class BuildGame : MonoBehaviour
             {
                 //GameObject card = Instantiate(cardPrefab) as GameObject; //프리팹 생성
                 Prefabs[p].transform.position = new Vector3(px1, py1, 0); //프리팹 배치하기
-             
-                
-                py1 -= 2.7f;
+
+
+                py1 -= 2.5f;
+                p += 1;
+            }
+            px1 += 4.2f;
+        }
+
+        float py2 = 1.16f;
+        float px2 = px + 2.1f;
+        for (int i = 0; i < number - 1; i++)
+        {
+            //GameObject card = Instantiate(cardPrefab) as GameObject;
+            Prefabs[p].transform.position = new Vector3(px2, py2, 0);
+
+            py2 -= 2.5f;
+            p += 1;
+        }
+    }
+
+    void buildGameNormal(List<GameObject> Prefabs)
+    {
+        int number = 3;
+        float px = -2.0f; //프리팹 놓을 좌표 x
+        float py = 2.5f;  //프리팹 놓을 좌표 y
+
+        float px1 = px;
+        int p = 0;
+        for (int j = 0; j < 2; j++)
+        {
+            float py1 = py;
+
+            for (int i = 0; i < number; i++)
+            {
+                //GameObject card = Instantiate(cardPrefab) as GameObject; //프리팹 생성
+                Prefabs[p].transform.position = new Vector3(px1, py1, 0); //프리팹 배치하기
+
+
+                py1 -= 2.5f;
                 p += 1;
             }
             px1 += 4.6f;
         }
 
-        float py2 = 0.45f;
-        float px2 = px + 2.3f;
-        for (int i = 0; i < number - 1; i++)
+        float px2 = px - 2.3f;
+        for (int j = 0; j < 3; j++)
         {
-            //GameObject card = Instantiate(cardPrefab) as GameObject;
-            Prefabs[p].transform.position = new Vector3(px2, py2, 0);
-            
-            py2 -= 2.7f;
-            p += 1;
+            float py2 = 1.16f;
+
+            for (int i = 0; i < number - 1; i++)
+            {
+                //GameObject card = Instantiate(cardPrefab) as GameObject;
+                Prefabs[p].transform.position = new Vector3(px2, py2, 0);
+
+                py2 -= 2.5f;
+                p += 1;
+            }
+            px2 += 4.6f;
         }
     }
 
-
 }
+
+
+
