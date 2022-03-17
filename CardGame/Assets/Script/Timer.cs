@@ -11,11 +11,16 @@ public class Timer : MonoBehaviour
     public GameObject canvas;
 
     GameObject timer;
+
+    float height;
+    float width;
+    
     
 
     void Start()
     {
-    
+        height = Camera.main.orthographicSize * 2;
+        width = height * Screen.width / Screen.height;
         buildTimer();
 
 
@@ -41,9 +46,18 @@ public class Timer : MonoBehaviour
         timer = Instantiate(timerBar) as GameObject;
         timer.transform.SetParent(timerGage.transform);
         timerGage.SetActive(true);
-        timerGage.transform.position = new Vector3(-9f, -4f, 0);
-        timerGage.transform.localScale = new Vector2(0.35f, 0.35f);
-        timer.transform.position = new Vector3(-9f, -3.9f,0);
+
+
+        // 타이머 위치와 크기 해상도에 맞게 설정하는 부분 
+        timerGage.transform.position = new Vector3((-1 * width / 2)+1f, (-1 * height / 2) +1f);
+        float calWidth = width / 17;
+        float calHeight = height / 1.2f;
+        timerGage.transform.localScale = new Vector3(1, 1, 1);
+        Vector3 test = timerGage.GetComponent<SpriteRenderer>().bounds.size;
+        timerGage.transform.localScale = new Vector3(calWidth / test.x, calHeight / test.y,1);
+        //----------------요기까지 -----------
+
+        timer.transform.localPosition = new Vector3(0f, 0.2f,0);
         timer.transform.localScale = new Vector2(0.8f, 1f);
     }
 
