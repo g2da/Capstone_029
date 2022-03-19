@@ -83,7 +83,7 @@ public class GameDirector : MonoBehaviour
                 StartCoroutine(hit_ob[0].GetComponent<rotation1>().RotateCard_back());
                 StartCoroutine(hit_ob[1].GetComponent<rotation1>().RotateCard_back());
 
-                yield return new WaitForSeconds(1.0f);
+                yield return new WaitForSeconds(0.7f);
                 state = STATE.IDLE;
 
 

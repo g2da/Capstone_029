@@ -98,6 +98,10 @@ public class BuildGame : MonoBehaviour
         {
             StartCoroutine(buildGameNormal(Prefabs));
         }
+        else if (level == 14)
+        {
+            StartCoroutine(buildGameHard(Prefabs));
+        }
 
 
 
@@ -186,6 +190,66 @@ public class BuildGame : MonoBehaviour
             px2 += 4.6f;
 
 
+        }
+        yield return new WaitForSeconds(2.0f);
+        GameDirector.state = GameDirector.STATE.IDLE;
+    }
+
+    public IEnumerator buildGameHard(List<GameObject> Prefabs)
+    {
+        int number = 3;
+        float px = -2.0f; //프리팹 놓을 좌표 x
+        float py = 2.5f;  //프리팹 놓을 좌표 y
+
+        float px1 = px;
+        int p = 0;
+        for (int j = 0; j < 2; j++)
+        {
+            float py1 = py;
+
+            for (int i = 0; i < number; i++)
+            {
+                //GameObject card = Instantiate(cardPrefab) as GameObject; //프리팹 생성
+                Prefabs[p].transform.position = new Vector3(px1, py1, 0); //프리팹 배치하기
+
+
+
+                py1 -= 2.5f;
+                p += 1;
+            }
+
+
+            px1 += 4.6f;
+        }
+
+        float px2 = px - 2.3f;
+        for (int j = 0; j < 2; j++)
+        {
+            float py2 = 1.16f;
+
+            for (int i = 0; i < number - 1; i++)
+            {
+                //GameObject card = Instantiate(cardPrefab) as GameObject;
+                Prefabs[p].transform.position = new Vector3(px2, py2, 0);
+
+
+                py2 -= 2.5f;
+                p += 1;
+
+            }
+            px2 += 9.2f;
+
+
+        }
+
+        float px3 = px + 2.3f;
+        float py3 = 1.16f + 2.5f;
+
+        for (int j = 0; j<4; j++)
+        {
+            Prefabs[p].transform.position = new Vector3(px3, py3, 0);
+            py3 -= 2.5f;
+            p += 1;
         }
         yield return new WaitForSeconds(2.0f);
         GameDirector.state = GameDirector.STATE.IDLE;

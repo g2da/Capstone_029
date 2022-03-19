@@ -168,6 +168,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cf74640262826db4a947825cb0134145, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  hit_ob:
+  - {fileID: 0}
+  - {fileID: 0}
   touch_c: 0
   score: 0
 --- !u!114 &186124615
@@ -185,7 +188,7 @@ MonoBehaviour:
   canvas: {fileID: 1435680789}
   cardPrefab: {fileID: 4676789207061010108, guid: 510ee172f10ee94469cc9403ae64cb37,
     type: 3}
-  level: 8
+  level: 14
 --- !u!4 &186124616
 Transform:
   m_ObjectHideFlags: 0

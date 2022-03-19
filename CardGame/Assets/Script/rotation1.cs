@@ -87,7 +87,7 @@ public class rotation1 : MonoBehaviour
     {
         director.GetComponent<GameDirector>().Count_minus();
         coroutineAllowed = false;
-        yield return new WaitForSeconds(1.0f);
+        yield return new WaitForSeconds(0.7f);
 
         for (float i = 180f; i >= 0f; i -= 10f)
         {
@@ -123,7 +123,7 @@ public class rotation1 : MonoBehaviour
         coroutineAllowed = true;
         facedUp = !facedUp;
 
-        yield return new WaitForSeconds(1.3f);
+        yield return new WaitForSeconds(1.75f);
 
         coroutineAllowed = false;
 
