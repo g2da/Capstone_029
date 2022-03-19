@@ -5,13 +5,17 @@ using UnityEngine.SceneManagement;
 
 public class GameDirector : MonoBehaviour
 {
-
+    [SerializeField]
     GameObject[] hit_ob = new GameObject[2]; // 뒤집어진 카드 Object 저장
     Sprite[] check_card = new Sprite[2];     //뒤집어진 카드의 이미지 저장
 
     public int touch_c = 0;
     public int score = 0;
-
+    public static STATE state = STATE.START;
+    public enum STATE
+    {
+        START, HIT, WAIT, IDLE
+    };
 
     // Start is called before the first frame update
     void Start()
@@ -27,35 +31,51 @@ public class GameDirector : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetMouseButtonDown(0) && touch_c == 0)
+        switch (state)
         {
-            Vector2 pos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-            RaycastHit2D hit = Physics2D.Raycast(pos, Vector2.zero);
-            
-            hit_ob[touch_c] = hit.transform.gameObject;
+            case STATE.IDLE:
+                if (Input.GetMouseButtonDown(0))
+                {
+                    Vector2 pos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+                    RaycastHit2D hit = Physics2D.Raycast(pos, Vector2.zero);
 
-            Debug.Log(hit.transform.gameObject.name);
+                    hit_ob[touch_c] = hit.transform.gameObject;
+                    hit.transform.gameObject.GetComponent<rotation1>().react();
 
-            touch_c += 1;
+
+                    Debug.Log(hit.transform.gameObject.name);
+                }
+                break;
+
+            case STATE.START:
+                break;
+
+            case STATE.HIT:
+                StartCoroutine(check_Card());
+                break;
         }
-        else if (Input.GetMouseButtonDown(0) && touch_c == 1)   // 두 장이 선택된 경우
+
+    }
+
+    public IEnumerator check_Card()
+    {
+        if (touch_c == 1)
         {
-            Vector2 pos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-            RaycastHit2D hit = Physics2D.Raycast(pos, Vector2.zero);
-
-            hit_ob[touch_c] = hit.transform.gameObject;
-
-            touch_c += 1;
-
-            Debug.Log(hit.transform.gameObject.name);
+            state = STATE.IDLE;
+            yield return null;
+        }
+        else if (touch_c == 2)
+        {
 
             if (check_card[0] == check_card[1]) //이미지 비교
             {
                 touch_c = 0;
+                state = STATE.IDLE;
                 score += 1; // 짝 맞으면 점수 1점씩 더함 총 8카드에서는 4점이 최대
-                if(score == GetComponent<BuildGame>().level / 2)
+                if (score == GetComponent<BuildGame>().level / 2)
                 {
                     Invoke("gameOver", 1);
+                    yield return null;
                 }
             }
             else
@@ -63,22 +83,12 @@ public class GameDirector : MonoBehaviour
                 StartCoroutine(hit_ob[0].GetComponent<rotation1>().RotateCard_back());
                 StartCoroutine(hit_ob[1].GetComponent<rotation1>().RotateCard_back());
 
+                yield return new WaitForSeconds(1.0f);
+                state = STATE.IDLE;
+
+
             }
         }
-
-
-
-        /*if(Input.GetMouseButtonDown(0) && f_c == 2 && check_card.Count == 2)
-        {
-            if (check_card[0] == check_card[1])
-            {
-
-            }
-            else //카드가 같지 않으면
-            {
-
-            }
-        }*/
     }
 
     public void selected_Card(Sprite worldImage) //이 함수는 카드를 클릭하면 호출된다. 호출되었을 때 클릭한 카드를 배열에 저장한다.
@@ -90,7 +100,11 @@ public class GameDirector : MonoBehaviour
     void gameOver()
     {
         SceneManager.LoadScene("GameOver");
-        
+
     }
 
+    public void touch_count()
+    {
+        touch_c += 1;
+    }
 }

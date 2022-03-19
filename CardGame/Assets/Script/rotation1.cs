@@ -46,22 +46,24 @@ public class rotation1 : MonoBehaviour
 
 
 
-    private void OnMouseDown()
+    public void react()
     {
-        Debug.Log(touch_c);
-        touch_c = director.GetComponent<GameDirector>().touch_c;
-        
-        if (coroutineAllowed && touch_c < 2 && facedUp == false) //flip count 뒤집은 횟수가 2가 되면 클릭해도 뒤집기 금지
-                                                                 //if (coroutineAllowed)
+
+
+        if (coroutineAllowed && GameDirector.state == GameDirector.STATE.IDLE && facedUp == false) //flip count 뒤집은 횟수가 2가 되면 클릭해도 뒤집기 금지
+                                                                                                   //if (coroutineAllowed)
         {
             director.GetComponent<GameDirector>().selected_Card(thisCard.wordImage);
             StartCoroutine(RotateCard_Front());
+            director.GetComponent<GameDirector>().touch_count();
+            GameDirector.state = GameDirector.STATE.HIT;
 
         }
     }
 
     private IEnumerator RotateCard_Front()
     {
+
         coroutineAllowed = false;
         for (float i = 0f; i <= 180f; i += 10f)
         {
@@ -78,12 +80,15 @@ public class rotation1 : MonoBehaviour
         }
         coroutineAllowed = true;
         facedUp = !facedUp;
+
     }
 
     public IEnumerator RotateCard_back()
     {
+        director.GetComponent<GameDirector>().Count_minus();
         coroutineAllowed = false;
-        yield return new WaitForSeconds(3.0f);
+        yield return new WaitForSeconds(1.0f);
+
         for (float i = 180f; i >= 0f; i -= 10f)
         {
             transform.rotation = Quaternion.Euler(0f, i, 0f);
@@ -99,7 +104,7 @@ public class rotation1 : MonoBehaviour
 
         facedUp = !facedUp;
 
-        director.GetComponent<GameDirector>().Count_minus();
+
     }
 
     public IEnumerator start_rotation()
