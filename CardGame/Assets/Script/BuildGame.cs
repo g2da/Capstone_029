@@ -9,8 +9,7 @@ public class BuildGame : MonoBehaviour
 {
     public static Sprite[] Spr;
     public GameObject canvas;
-
-
+    GameObject click;
 
     public GameObject cardPrefab;
 
@@ -20,6 +19,10 @@ public class BuildGame : MonoBehaviour
     void Start()
     {
         canvas = GameObject.Find("Canvas");
+
+        click = GameObject.Find("Click"); //MainMenu의 level변수를 가진 오브젝트 가져옴
+        level = click.GetComponent<SceneChange>().level; // 해당 level로 현재 level 설정 
+
         buildgame(level); //게임 난이도에 따라 매개변수 넘기는 값 변경할 예정
     }
 

@@ -12,8 +12,8 @@ public class Timer : MonoBehaviour
 
     GameObject timer;
 
-    float height;
-    float width;
+    public float height;
+    public float width;
     
     
 
@@ -30,11 +30,11 @@ public class Timer : MonoBehaviour
     void Update()
     {
 
-        if (timer.transform.localScale.y > 0)
+        if (timer.transform.localScale.y > 0 && Time.timeScale == 1)
         {
             timer.transform.localScale -= new Vector3(0, 0.00005f, 0); // x축 조절로 시간 조절
         }
-        else
+        else if(timer.transform.localScale.y <= 0)
         {
             timer.SetActive(false);
             SceneManager.LoadScene("GameOver");
@@ -49,7 +49,7 @@ public class Timer : MonoBehaviour
 
 
         // 타이머 위치와 크기 해상도에 맞게 설정하는 부분 
-        timerGage.transform.position = new Vector3((-1 * width / 2)+1f, (-1 * height / 2) +1f);
+        timerGage.transform.position = new Vector3((-1 * width / 2)+1f, (-1 * height / 2)+1.3f);
         float calWidth = width / 17;
         float calHeight = height / 1.2f;
         timerGage.transform.localScale = new Vector3(1, 1, 1);

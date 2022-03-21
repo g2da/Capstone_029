@@ -53,9 +53,11 @@
     <UnityVersion>2019.4.34f1</UnityVersion>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="Assets\Script\BackMove.cs" />
     <Compile Include="Assets\Script\BuildGame.cs" />
     <Compile Include="Assets\Script\CardInfo.cs" />
     <Compile Include="Assets\Script\GameDirector.cs" />
+    <Compile Include="Assets\Script\SceneChange.cs" />
     <Compile Include="Assets\Script\Timer.cs" />
     <Compile Include="Assets\Script\rotation1.cs" />
   </ItemGroup>
