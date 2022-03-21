@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using System;
 
 public class GameDirector : MonoBehaviour
 {
@@ -36,14 +37,21 @@ public class GameDirector : MonoBehaviour
             case STATE.IDLE:
                 if (Input.GetMouseButtonDown(0))
                 {
-                    Vector2 pos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-                    RaycastHit2D hit = Physics2D.Raycast(pos, Vector2.zero);
+                    try
+                    {
+                        Vector2 pos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+                        RaycastHit2D hit = Physics2D.Raycast(pos, Vector2.zero);
 
-                    hit_ob[touch_c] = hit.transform.gameObject;
-                    hit.transform.gameObject.GetComponent<rotation1>().react();
+                        hit_ob[touch_c] = hit.transform.gameObject;
+                        hit.transform.gameObject.GetComponent<rotation1>().react();
 
 
-                    Debug.Log(hit.transform.gameObject.name);
+                        Debug.Log(hit.transform.gameObject.name);
+                    }
+                    catch (NullReferenceException ie)
+                    {
+
+                    }
                 }
                 break;
 
