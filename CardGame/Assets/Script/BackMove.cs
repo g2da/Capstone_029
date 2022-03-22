@@ -16,7 +16,7 @@ public class BackMove : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+
     }
     private void OnMouseDown()
     {
@@ -38,6 +38,8 @@ public class BackMove : MonoBehaviour
         //transform.SetParent(GameObject.Find("Canvas").transform);
         float height = Camera.main.orthographicSize * 2;
         float width = height * Screen.width / Screen.height;
-        transform.position = new Vector3((-1f * width / 2)+1f, (-1f * height / 2) +0.5f);
+        transform.position = new Vector3((-1f * width / 2) + 1f, (-1f * height / 2) + 0.5f);
     }
+
+
 }

@@ -50,7 +50,7 @@ public class rotation1 : MonoBehaviour
     {
 
 
-        if (coroutineAllowed && GameDirector.state == GameDirector.STATE.IDLE && facedUp == false) //flip count 뒤집은 횟수가 2가 되면 클릭해도 뒤집기 금지
+        if (coroutineAllowed && GameDirector.state == GameDirector.STATE.IDLE && facedUp == false && !EventSystem.current.IsPointerOverGameObject()) //flip count 뒤집은 횟수가 2가 되면 클릭해도 뒤집기 금지 ( 패널터치가 아닐경우 ) 
                                                                                                    //if (coroutineAllowed)
         {
             director.GetComponent<GameDirector>().selected_Card(thisCard.wordImage);
