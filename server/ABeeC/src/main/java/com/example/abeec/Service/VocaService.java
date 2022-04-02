@@ -24,8 +24,8 @@ public class VocaService {
         if(user!=null){
             user.getMyVocas().forEach(myVoca->{
                 MyVocaDto myVocaDto = new MyVocaDto();
-                myVocaDto.setEnglish(myVoca.getVoca().getEnglish());
-                myVocaDto.setKorean(myVoca.getVoca().getKorean());
+                myVocaDto.setEnglish(myVoca.getEnglish());
+                myVocaDto.setKorean(myVoca.getKorean());
                 myVocaDto.setImage(myVoca.getImage());
                 myVocas.add(myVocaDto);
             });

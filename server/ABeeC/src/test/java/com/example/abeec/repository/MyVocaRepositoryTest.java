@@ -22,7 +22,7 @@ public class MyVocaRepositoryTest {
 
 
 
-    @Test
+   // @Test
     void dbTest(){
         Voca voca = new Voca();
         voca.setEnglish("banana");
@@ -32,18 +32,20 @@ public class MyVocaRepositoryTest {
         vocaRepository.findAll().forEach(System.out::println);
     }
 
-    @Test
+ //   @Test
     @Transactional
-   // @Rollback(false) //test 롤백 막기
+    @Rollback(false) //test 롤백 막기
     void myvocaTest(){
         MyVoca myVoca = new MyVoca();
-        myVoca.setVoca(vocaRepository.findById(5L).get());
+        myVoca.setEnglish("banana");
+        myVoca.setKorean("바나나");
         myVoca.setUserId("yoojinjangjang");
 
         myVocaRepository.save(myVoca);
 
         MyVoca myVoca1  = new MyVoca();
-        myVoca1.setVoca(vocaRepository.findById(6L).get());
+        myVoca1.setEnglish("apple");
+        myVoca1.setKorean("사과");
         myVoca1.setUserId("yoojinjangjang");
         myVocaRepository.save(myVoca1);
 
@@ -52,13 +54,13 @@ public class MyVocaRepositoryTest {
 
     }
 
-    @Test
+   // @Test
     @Transactional
     void userTest(){
-        User user = userRepository.findById("yoojin").get();
+        User user = userRepository.findById("yoojinjangjang").get();
         user.getMyVocas().forEach(myVoca->{
-            System.out.println(myVoca.getVoca().getEnglish());
-            System.out.println(myVoca.getVoca().getKorean());
+            System.out.println(myVoca.getEnglish());
+            System.out.println(myVoca.getKorean());
             System.out.println(myVoca.getImage());
         });
     }

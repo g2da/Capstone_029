@@ -18,8 +18,9 @@ public class MyVoca {
     @Column(name = "user_id")
     private String userId;
 
-    @ManyToOne
-    private Voca voca;
+    private String english;
+
+    private String korean;
 
     // 이미지 저장 변수
     @Lob
