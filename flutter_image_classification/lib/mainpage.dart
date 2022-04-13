@@ -18,6 +18,9 @@ class MainPage extends StatelessWidget {
             ElevatedButton(
                 onPressed: () {Get.to(SearchVoca());},
                 child: Text("단어찾기")),
+            ElevatedButton(
+                onPressed: () {Get.to(SearchVoca());},
+                child: Text("미니게임")),
           ],
         ),
       ),
