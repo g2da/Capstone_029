@@ -58,15 +58,20 @@ class _SearchVocaState extends State<SearchVoca> {
     print(responseBody);
     print("===========");
 
+
     //if(responseItems['duplicate'] == "duplicate")
     //  return ShowDialog(baseImage64,responseItems['id']);
     //else
-    //  return; //모바일 디비에 저장
+    //  return; // 모바일 디비에 저장 , 위젯 개별단어장
+    // 모바일 디비 : 영어-한글-이미지-id
 
-    // 중복시 응답 형식
+    // 중복시 서버 응답 형식
     // {'duplicate':'duplicate','id':'id'}
-    // 중복이 아닐 시 응답 형식
-    // {'english':'영단어','korean':'한글'}
+    // 덮어쓸지 안쓸지 선택하는 창 띄워주기
+
+    // 중복이 아닐 시 서버 응답 형식
+    // {'english':'영단어','korean':'한글','id':'id'}
+    // 개별단어장에 해당 이미지와 영단어,한글 보여주기
   }
 
 
@@ -130,6 +135,8 @@ class _SearchVocaState extends State<SearchVoca> {
               TextButton(onPressed: () {ifDuplicate();}, child: Text("YES")),
               // TextButton(onPressed: () {ifDuplicate(base64Image,id);}, child: Text("YES")),
               TextButton(onPressed: () {Get.back();}, child: Text("NO")),
+              // 덮어쓰지 않는다고 선택하면 이미지촬영화면 으로 돌아가게 하기 --> 위젯 개별단어장
+              // 모바일 디비 -> 해당 id로 영어-한글-이미지 받아오기
             ],
           );
         });
@@ -155,3 +162,7 @@ class _SearchVocaState extends State<SearchVoca> {
 // 덮어쓰기 할 시 요청 :
 //{ 'image' : '$base64Image', 'id' : 'id' }
 // 해당 image를 서버에 저장하고 데이터베이스 my_voca table에 해당 'id'의 'image' 필드를 새로 갱신하기
+
+// 응답 : {'english': '영단어','korean':'한글'}
+// 모바일 db에 해당 이미지 저장
+// 프론트 개별 단어장 화면에 새로운 이미지와 영어/한글 보여주기
