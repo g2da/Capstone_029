@@ -44,3 +44,17 @@ app.*.map.json
 /android/app/debug
 /android/app/profile
 /android/app/release
+
+
+
+
+/unity/CardGame/[Ll]ibrary/
+*.pidb.meta
+*.pdb.meta
+*.mdb.meta
+*.apk
+*.aab
+*.unitypackage
+*.app
+/unity/CardGame/[Aa]ssets/[Ss]treamingAssets/aa.meta
+/unity/CardGame/[Aa]ssets/[Ss]treamingAssets/aa/*
