@@ -48,6 +48,7 @@ app.*.map.json
 
 
 flutter_image_classfication/unity/CardGame/[Ll]ibrary/
+flutter_image_classfication/unity/CardGame/Temp/UnityLockfile
 *.pidb.meta
 *.pdb.meta
 *.mdb.meta
