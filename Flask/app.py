@@ -45,6 +45,7 @@ def db_connector():
     db.close()
     return result
 
+
 def db_connector_check(user_name):
     db = pymysql.connect(
         user='yoojinjangjang',  # user name
@@ -56,10 +57,11 @@ def db_connector_check(user_name):
     )
     cursor = db.cursor()
     sql = '''SELECT id FROM my_voca WHERE user_id="%s";'''
-    cursor.execute(sql,user_name)
+    cursor.execute(sql, user_name)
     result = cursor.fetchall()
     db.close()
     return result
+
 
 def duplicate_Checker(user_id, output_english):
     db = pymysql.connect(
@@ -72,7 +74,7 @@ def duplicate_Checker(user_id, output_english):
     )
     cursor = db.cursor()
     sql = "SELECT * FROM my_voca WHERE user_id=%s AND english=%s;"
-    cursor.execute(sql,(user_id,output_english))
+    cursor.execute(sql, (user_id, output_english))
     result = cursor.fetchone()
     db.close()
     return result
@@ -95,9 +97,9 @@ def insert_word(user_id, output_english, output_korean):
     cursor.execute(sql, (user_id, output_english))
     result = cursor.fetchone()
     if result:  # 중복아닐때 삽입하고 모바일에 영어,한글,db에 있는 id까지 보내주기
-        return jsonify({'insert' : 'completed','english' : output_english, 'korean' : output_korean})  # 'insert complete'
+        return jsonify({'duplicate': 'no', 'english': output_english, 'korean': output_korean})  # 'insert complete'
     if not result:
-        return jsonify({'insert' : 'error'})
+        return jsonify({'insert': 'error'})
 
 
 # 전처리 과정
@@ -144,6 +146,7 @@ def index():
     english, korean = predict_image(input_tensor)
     return jsonify({'english': english, 'korean': korean})
 
+
 @app.route('/duplication', methods=['POST', 'GET'])
 def duplication_db():
     base64Image = request.json['image']
@@ -155,11 +158,12 @@ def duplication_db():
     input_tensor = image_transforms(pil_image)
     output_english, output_korean = predict_image(input_tensor)
     duplicate_Check = duplicate_Checker(user_id, output_english)
-    if not duplicate_Check: # 중복아님
+    if not duplicate_Check:  # 중복아님
         db_insert = insert_word(user_id, output_english, output_korean)
         return db_insert
-    elif duplicate_Check: # 중복임
-        return jsonify({'duplicate' : 'yes','id' : duplicate_Check[0]})
+    elif duplicate_Check:  # 중복임
+        return jsonify({'duplicate': 'yes', 'id': duplicate_Check[0]})
+
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=5000)
