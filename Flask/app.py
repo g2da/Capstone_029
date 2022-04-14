@@ -145,7 +145,7 @@ def index():
     return jsonify({'english': english, 'korean': korean})
 
 @app.route('/duplication', methods=['POST', 'GET'])
-def duplication_db(id):
+def duplication_db():
     base64Image = request.json['image']
     user_id = request.json['id']
     imageStr = base64.b64decode(base64Image)
