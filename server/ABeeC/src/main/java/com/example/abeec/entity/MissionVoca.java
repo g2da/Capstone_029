@@ -2,28 +2,22 @@ package com.example.abeec.entity;
 
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import org.springframework.web.multipart.MultipartFile;
 
-import javax.persistence.*;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 
-@Data
 @Entity
+@Data
 @NoArgsConstructor
-public class MyVoca {
-
+public class MissionVoca {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "user_id")
-    private String userId;
-
     private String english;
 
     private String korean;
-
-
-
-
 
 }

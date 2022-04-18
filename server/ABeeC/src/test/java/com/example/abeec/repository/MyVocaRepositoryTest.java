@@ -9,6 +9,8 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.annotation.Rollback;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
+
 @SpringBootTest
 public class MyVocaRepositoryTest {
     @Autowired
@@ -61,8 +63,16 @@ public class MyVocaRepositoryTest {
         user.getMyVocas().forEach(myVoca->{
             System.out.println(myVoca.getEnglish());
             System.out.println(myVoca.getKorean());
-            System.out.println(myVoca.getImage());
+
         });
+    }
+
+
+    @Test
+    void test(){
+        List<MyVoca> myVocaList = myVocaRepository.findAllByUserIdAndEnglish("yoojinjangjang","pencil");
+
+        System.out.println(myVocaList);
     }
 
 

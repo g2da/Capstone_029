@@ -58,6 +58,12 @@ english,korea 필드
 
 - 이미지넷 파일 db에 저장 필요 [ ]
 
+## mission-voca
+
+id,english,korean 필드
+
+- mission 을 위한 필드
+
 ---
 
 # 2. 서버 구축
@@ -73,13 +79,15 @@ primary key : **id**
 
 ### 2] MyVoca
 
-primary key 인**id** 와 **user_id**,**voca_id**,**image** 로 구성된다.
-user_id는 user entity 를 참조하는 외래키 이다. ( N대1)
-voca_id는 voca entity 를 참조하는 외래키 이다. (N대1)
+primary key 인**id** 와 **english**,**korean** 으로 구성된다.
 
 ### 3] Voca
 
 primary key 인 **id** 와 **english** , **korean** 으로 구성된다.
+
+### 4] MissionVoca
+
+voca테이블과 동일하며, 미션을 위한 단어장이다.
 
 ---
 
@@ -109,16 +117,20 @@ primary key 인 **id** 와 **english** , **korean** 으로 구성된다.
 
 id값을 받아서 해당 사용자를 user 데이터베이스에서 찾은뒤 해당 사용자가 학습한 단어들을 MyVocaDto 타입으로 변환한뒤 list 로 반환해준다.
 
-### 4] 일일 미션
+### 4] 일일 미션- MissionService
 
-### 5] 친구 목록
+#### getMissionList 메소드
+
+id 값을 받아서 해당 사용자의 미션으로 할당된 리스트를 반환한다.
+해당 미션에는 camera 리스트와 listening 리스트가 존재한다.
+camera 는 카메라로 촬영할 리스트이며, listening은 들을 리스트이다.
 
 ### 6] 게임
 
 -03/07 일자: 카드 간 일치 불일치 이벤트 처리 완료. 일치할 경우 오픈된 상태 유지, 불일치하면 원래 상태로 카드 뒤집는다.
-  - 남은 작업 : sprite 크기 조절, (입장, 퇴장 씬 생성), 시간 제한 ui 생성.
-  - 논의 사항 : 난이도나 단계에 따른 카드 생성 수, 카드 배치
- 
+
+- 남은 작업 : sprite 크기 조절, (입장, 퇴장 씬 생성), 시간 제한 ui 생성.
+- 논의 사항 : 난이도나 단계에 따른 카드 생성 수, 카드 배치
 
 ---
 
@@ -176,6 +188,19 @@ id 의 중복을 검사한다.
 
 2. user id 가 db내에 존재하지 않을 시 - 400 에러
 
+### 4] MissionController
+
+#### GetMission 메소드 : 퍼블릭IP:8080/abeec/mission/{id}의 get 요청
+
+해당 id의 사용자가 학습해야할 미션 리스트를 반환한다.
+
+- **request** : String 형태의 id - path variable
+- **response** : MissionResDto 로서
+
+![](https://velog.velcdn.com/images/yoojinjangjang/post/18f8c63f-8a71-4a6c-8aab-5d43946258e5/image.png)
+
+위의 사진과 같은 형태의 json을 반환
+
 ---
 
 ## DTO
@@ -201,6 +226,13 @@ id 의 중복을 검사한다.
 - **english** : 영단어
 - **korean** : 한국댠어
 - **image** : 이미지
+
+### 3] missionResDto
+
+미션 dto 이다.
+
+- **camera** : 촬영할 영단어 리스트
+- **listening** : 들을 영단어 리스트
 
 ---
 

@@ -12,5 +12,4 @@ import org.springframework.beans.factory.annotation.Autowired;
 public class MyVocaDto {
     private String english;
     private String korean;
-    private byte[] image;
 }

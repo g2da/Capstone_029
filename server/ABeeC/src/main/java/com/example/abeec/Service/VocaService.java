@@ -26,7 +26,6 @@ public class VocaService {
                 MyVocaDto myVocaDto = new MyVocaDto();
                 myVocaDto.setEnglish(myVoca.getEnglish());
                 myVocaDto.setKorean(myVoca.getKorean());
-                myVocaDto.setImage(myVoca.getImage());
                 myVocas.add(myVocaDto);
             });
             return myVocas;
