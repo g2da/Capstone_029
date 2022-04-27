@@ -1,7 +1,9 @@
 package com.example.abeec.Service;
 
 import com.example.abeec.dto.UserDto;
+import com.example.abeec.entity.Mission;
 import com.example.abeec.entity.User;
+import com.example.abeec.repository.MissionRepository;
 import com.example.abeec.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,7 +17,7 @@ import javax.persistence.EntityManager;
 public class JoinService {
 
     private final UserRepository userRepository;
-
+    private final MissionRepository missionRepository;
     @Autowired
     private EntityManager entityManager;
 
@@ -35,12 +37,14 @@ public class JoinService {
     //db에 user 저장( 회원가입 정보 db 기록 )
     public UserDto saveUser(UserDto userReq){
         User user = userReq.toEntity();
-
         userRepository.save(user);
-
         entityManager.clear(); //캐시 clear --> 데이터베이스와 캐시의 불일치 맞쳐주기
-
         User resultUser = userRepository.findById(user.getId()).get(); // 반환을 위해 저장한 엔티티 호출
+
+        Mission mission = new Mission();
+        mission.setUserId(user.getId());
+        mission.setCamera("[apple,banana,pineapple,tissue,cup,tree,curtain,eraser,pencil case,mouse]");
+        missionRepository.save(mission);
 
         return entityToDto(resultUser); // dto로 변환하여 반환
     }

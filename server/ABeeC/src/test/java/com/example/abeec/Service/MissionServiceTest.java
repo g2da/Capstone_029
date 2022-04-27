@@ -14,7 +14,7 @@ class MissionServiceTest {
     @Autowired
     private MissionService missionService;
 
-    @Test
+   // @Test
     void listenigtest(){
         MissionResDto mission = missionService.getMissionList("yoojinjangjang");
 
