@@ -82,4 +82,31 @@ public class JoinController {
         return joinService.loginCheck(id,password);
     }
 
+    /*  회원정보 받아오기 : 퍼블리IP:8080/abeec/user/{id} 의 get요청
+    request : String id - path Variable
+    response: user의 정보
+     해당 user의 정보를 반환
+     */
+    @GetMapping("/user/{id}")
+    public UserDto getUserInfo(@PathVariable String id){
+        return joinService.userInfo(id);
+    }
+
+
+    /*
+        totalScore 갱신하기 : 퍼블릭IP:8080/abeec/user?id=''&password='' 의 post요청
+        request : String id, int totalScore - query param
+     */
+    @PostMapping("/user")
+    public ResponseEntity setUserTotalScore(@RequestParam String id,@RequestParam int totalScore){
+
+        var result = joinService.updateTotalScore(id,totalScore);
+        if(result == 0){
+            String sb = "error";
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(sb);
+
+        }
+
+        return ResponseEntity.status(HttpStatus.CREATED).body(result);
+    }
 }

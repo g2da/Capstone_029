@@ -3,8 +3,6 @@ package com.example.abeec.entity;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import lombok.ToString;
-import org.hibernate.annotations.ColumnDefault;
 import org.hibernate.annotations.DynamicInsert;
 
 import javax.persistence.Entity;
@@ -36,7 +34,7 @@ public class User {
 
     private int age;
 
-    private Integer wordsCount;
+    private Integer totalScore;
 
     private Integer level;
 

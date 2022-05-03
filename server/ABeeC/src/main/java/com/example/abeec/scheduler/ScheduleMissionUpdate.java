@@ -23,7 +23,7 @@ public class ScheduleMissionUpdate {
     MissionService missionService;
     @Autowired
     UserRepository userRepository;
-    @Scheduled(cron = "0 0/10 * * * *") // 10 분 마다 실행 나중엔 cron="0 0 0 0/7 * *" 7일마다 실행
+    @Scheduled(cron = "0 30 05 * * MON") // 매주 월요일 새벽 5시 30분마다 갱신
     public void updateMission(){
         List<User> users = userRepository.findAll();
         users.forEach(user -> {

@@ -96,10 +96,11 @@ def insert_word(user_id, output_english, output_korean):
     sql = "SELECT * FROM my_voca WHERE user_id=%s AND english=%s;"
     cursor.execute(sql, (user_id, output_english))
     result = cursor.fetchone()
-    if result:  # 중복아닐때 삽입하고 모바일에 영어,한글,db에 있는 id까지 보내주기
-        return jsonify({'duplicate': 'no', 'english': output_english, 'korean': output_korean})  # 'insert complete'
+    print(jsonify({'english': output_english, 'korean': output_korean}))
+    if result:
+        return jsonify({'english': output_english, 'korean': output_korean})  # 'insert complete'
     if not result:
-        return jsonify({'insert': 'error'})
+        return jsonify({'english': 'no', 'korean': output_korean})
 
 
 # 전처리 과정
@@ -159,11 +160,38 @@ def duplication_db():
     output_english, output_korean = predict_image(input_tensor)
     duplicate_Check = duplicate_Checker(user_id, output_english)
     if not duplicate_Check:  # 중복아님
-        db_insert = insert_word(user_id, output_english, output_korean)
-        return db_insert
+        return jsonify({'duplicate':'no','english':output_english,'korean':output_korean})
+        #db_insert = insert_word(user_id, output_english, output_korean)
+        #return db_insert
     elif duplicate_Check:  # 중복임
-        return jsonify({'duplicate': 'yes', 'id': duplicate_Check[0]})
+        return jsonify({'duplicate': 'yes', 'english':output_english,'korean':output_korean})
+
+
+@app.route('/save',methods=['POST','GET'])
+def save_db():
+    user_id = request.json['id']
+    english = request.json['english']
+    korean = request.json['korean']
+    print(user_id)
+    print(english)
+    print(korean)
+    db_insert = insert_word(user_id,english,korean)
+    print(db_insert)
+    return db_insert
+
 
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=5000)
+
+'''
+퍼블릭IP:5000/duplicate의 post요청 --> request('image':---,'id':---), response('duplicate':---,'english':---,'korean':----)
+프론트 -- duplicate : yes ( 중복이라는 창 띄워줌 ) , duplicate : no ( 저장할지 말지 결정 ( 개별단어장에 영어와 한글 & o,x 버튼 ) 
+
+퍼블릭IP:5000/save의 post요청 
+저장시 ( yes 버튼 클릭시  --> request({'id':---,'english':---,'korean':---}),response({'english':---,'korean':---}) ) , 
+            --> 프론트 -- 해당 개별단어장 표시 & 모바일 단어장 데베 저장 & 미션 검사  
+저장안할시 -- searchVoca화면으로 리다이렉트 
+
+
+'''

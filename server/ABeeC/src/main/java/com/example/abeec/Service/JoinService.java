@@ -11,6 +11,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.EntityManager;
+import java.util.Objects;
 
 @Service
 @RequiredArgsConstructor
@@ -63,6 +64,23 @@ public class JoinService {
 
     }
 
+    //해당 user의 정보를 반환
+    public UserDto userInfo(String id){
+        User user = userRepository.findById(id).orElse(null);
+        return entityToDto(user);
+    }
+
+
+    public int updateTotalScore(String id,int totalScore){
+        User user = userRepository.findById(id).get();
+        user.setTotalScore(totalScore);
+        User result = userRepository.save(user);
+        if(Objects.equals(result.getId(), id))
+            return 1;
+        else
+            return 0;
+    }
+
     //entity -> dto
     private UserDto entityToDto(User user){
         UserDto userDto = new UserDto();
@@ -72,7 +90,7 @@ public class JoinService {
         userDto.setPassword(user.getPassword());
         userDto.setPhone(user.getPhone());
         userDto.setLevel(user.getLevel());
-        userDto.setWordsCount(user.getWordsCount());
+        userDto.setTotalScore(user.getTotalScore());
 
         return userDto;
     }
