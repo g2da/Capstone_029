@@ -123,6 +123,16 @@ def predict_image(image):
     batch_t = torch.unsqueeze(image, 0)
     out = model(batch_t)
     _, indices = torch.sort(out, descending=True)
+    #percentage = torch.nn.functional.softmax(out, dim=1)[0] * 100
+    '''ex) 사진 결과의 정확도라기보단, 바나나 사진에 대한 분류 결과가 바나나, 사과, 포도 등등 순서라면
+    바나나 50%, 사과 30%, 포도 15%, 기타 5% 의 확률로 이미지가 일치한다. 라는 걸 나타내는 변수임
+    예를 한번 더 들자면, 바나나 사진을 넣고 percentage가 80 나오면, 전체 1000개 클래스 중에서
+    바나나일 확률이 80이라는 뜻. 나머지 999개 클래스가 20을 나눠가질것이고.
+    
+    percentage 값도 함께 return 해줘야하니 아래 return 변경해야합니다!
+    + res_eng랑 res_kor 값을 받게 되는 곳도요!
+    index() 함수랑 duplication_db() 이곳이요!
+    '''
     result = [pytorch_result[idx] for idx in indices[0]]
     result = result[0]
     res_eng = result[1]
