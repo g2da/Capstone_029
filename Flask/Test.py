@@ -123,7 +123,7 @@ def predict_image(image):
     batch_t = torch.unsqueeze(image, 0)
     out = model(batch_t)
     _, indices = torch.sort(out, descending=True)
-    #percentage = torch.nn.functional.softmax(out, dim=1)[0] * 100
+    percentages = torch.nn.functional.softmax(out, dim=1)[0] * 100
     '''ex) 사진 결과의 정확도라기보단, 바나나 사진에 대한 분류 결과가 바나나, 사과, 포도 등등 순서라면
     바나나 50%, 사과 30%, 포도 15%, 기타 5% 의 확률로 이미지가 일치한다. 라는 걸 나타내는 변수임
     예를 한번 더 들자면, 바나나 사진을 넣고 percentage가 80 나오면, 전체 1000개 클래스 중에서
@@ -133,11 +133,13 @@ def predict_image(image):
     + res_eng랑 res_kor 값을 받게 되는 곳도요!
     index() 함수랑 duplication_db() 이곳이요!
     '''
-    result = [pytorch_result[idx] for idx in indices[0]]
-    result = result[0]
+    result = [(pytorch_result[idx],percentages[idx].item()) for idx in indices[0]]
+    percentage = result[0][1]
+    result = result[0][0]
     res_eng = result[1]
     res_kor = result[2]
-    return res_eng, res_kor
+    print(percentage)
+    return res_eng, res_kor,percentage
 
 
 @app.route('/')
@@ -167,12 +169,10 @@ def duplication_db():
     img_np = cv2.imdecode(nparr, cv2.IMREAD_COLOR)
     pil_image = opencv2PIL(img_np)
     input_tensor = image_transforms(pil_image)
-    output_english, output_korean = predict_image(input_tensor)
+    output_english, output_korean,output_percentage = predict_image(input_tensor)
     duplicate_Check = duplicate_Checker(user_id, output_english)
     if not duplicate_Check:  # 중복아님
-        return jsonify({'duplicate':'no','english':output_english,'korean':output_korean})
-        #db_insert = insert_word(user_id, output_english, output_korean)
-        #return db_insert
+        return jsonify({'duplicate':'no','english':output_english,'korean':output_korean,'percentage':output_percentage})
     elif duplicate_Check:  # 중복임
         return jsonify({'duplicate': 'yes', 'english':output_english,'korean':output_korean})
 
