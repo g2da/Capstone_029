@@ -1,243 +1,53 @@
-# Capstone_029
+# 🐝 ABeeC
 
-ABeeC Project
+<img width="70%" src="https://user-images.githubusercontent.com/80965583/174551724-ac9c9b3c-abe0-4fa5-a3f6-b3bc28137b65.png"/>
 
----
+*'ABeeC' is an English learning application for children.*
 
-# DataBase
+ *Take a piture, Save it in the vocabulary book, Play the game*
+ 
 
-### 1. Mysql 다운로드
 
-[참고 사이트](https://velog.io/@joajoa/MySQL-%EB%8B%A4%EC%9A%B4%EB%A1%9C%EB%93%9C-%EB%B0%8F-%EC%84%A4%EC%B9%98-%EB%B0%A9%EB%B2%95) 8.0 버전 사용중입니다. 환경변수 설정 꼭 하셔야 되요!
+ 
+ ## 📌 TEAM029
+  
+ 
+    🐯 Yujin Jang(Team Leader) : https://github.com/yoojinjangjang
+    
+    🐭 Woohyeong Jo(Team Member) : https://github.com/wxxhyeong
+    
+    🦊 Jisoo Hong(Team Member) : https://github.com/g2da
+  
+    🐰 Seoyeon Ryu(Team Member) : https://github.com/Seoyeon622
+    
 
-### 2. DB 폴더의 .sql파일 import
 
-[참고 사이트](https://rkatk1523.tistory.com/25) 위의 다운로드 이후 mysql서버가 실행중이여야 합니다. `.sql파일`의 경로에 한글이 포함될경우 잘 실행되지 않은 것 같습니다. 데이테베이스 이름은 abeec로 생성해주세용. 밑의 사진에 밑줄 그은거 역슬래시 아니에요 ㅠ (역슬래신줄 알고 제가 헤맷어서 ..ㅎ )  
-![](https://images.velog.io/images/yoojinjangjang/post/9009fa03-83a7-41a6-938e-9b4894783c42/image.png)
+## 📌 Tech Stack
+### *Version Control*
+    Git/Github
 
----
+### *Frontend*
+    Native App : Flutter
 
-# Server
+### *Backend*
+    Framework : Spring boot, Flask
 
-### 1. Intellij 다운로드
+### *DB*
+    Data : MySQL
 
-[참고 사이트](https://goddaehee.tistory.com/215) Community 버전으로 공짜 있는데 학생 메일 인증하면 Ultimate 다운로드 가능해요. 사이트 링크 걸어놨습니다.
+### *Game*
+    Tool : Unity
+    
+## 📜 System Architecture
+<img width="60%" src="https://user-images.githubusercontent.com/80965583/174552578-1961fbfd-47e7-4d16-a7a4-3fdab68bed56.png"/>
 
-### 2. server 폴더의 abeec 프로젝트 실행
+## 📱 Demonstration
+<img width="70%" src="https://user-images.githubusercontent.com/80965583/174554653-905d5e95-587c-43a0-8e8c-b8578d8aceb5.png"/>
+<img width="70%" src="https://user-images.githubusercontent.com/80965583/174554687-54ae8bfe-99bd-4300-af44-1953635366bd.png"/>
+<img width="70%" src="https://user-images.githubusercontent.com/80965583/174554709-c4178e8e-b16c-4bee-a0f2-25bd55ca0bc3.png"/>
+<img width="70%" src="https://user-images.githubusercontent.com/80965583/174554730-22982436-0652-4d6e-9d88-52e267624d3a.png"/>
+<img width="70%" src="https://user-images.githubusercontent.com/80965583/174554752-a75da3d7-b3d7-4572-a73d-13429f80193e.png"/>
+<img width="70%" src="https://user-images.githubusercontent.com/80965583/174554831-4d6c2666-7438-48a6-a460-673131a79f48.png"/>
 
-오른쪽위에 실행버튼 누르면 서버가 동작합니다.  
-request url 이랑 요청 방식, 요청 정보는 벨로그에 작성해뒀어요 링크 걸어둘게요.  
-[abeec server 기능 명세 벨로그](https://velog.io/@yoojinjangjang/ABeeC-%EC%84%9C%EB%B2%84-%EA%B5%AC%EC%B6%95)
-![](https://images.velog.io/images/yoojinjangjang/post/8239619e-0583-4ae6-a49e-fa1a06022d22/image.png)
 
-- 2/2 일자 : ID중복검사, 회원가입, 로그인 기능 개발 -- **유진** [안되는거 말해주세요 이상한거도 말해주세요 ]
-- 2/14일자 : 단어장 개발
-- 2/21일자 : 서버 배포 ( DB 서버& 웹서버 ) -- 퍼블릭IP 카톡방 공유, 서버 배포 관련 내용  
-  [벨로그 - EC2](https://velog.io/@yoojinjangjang/AWS-Spring-%ED%94%84%EB%A1%9C%EC%A0%9D%ED%8A%B8-%EB%B0%B0%ED%8F%AC-EC2)  
-  [벨로그 - RDS](https://velog.io/@yoojinjangjang/AWS-EC2-Spring-%ED%94%84%EB%A1%9C%EC%A0%9D%ED%8A%B8-%EB%B0%B0%ED%8F%AC)
 
-# Server API
-
-> #### 요청 Url이나 요청 방식, 요청 데이터형식은 Controller부분에 작성해 놨습니다.
-
-# 1. 데이터베이스 구축
-
-MySql을 이용한 데이터베이스를 구축하고자 하였으며, user,my_voca,voca 테이블을 생성하였다.
-
-## User
-
-id,name,password,age,phone,words_count,level 필드
-
-## my_voca
-
-user_id,voca_id,image 필드
-
-## voca
-
-english,korea 필드
-
-- 이미지넷 파일 db에 저장 필요 [ ]
-
-## mission-voca
-
-id,english,korean 필드
-
-- mission 을 위한 필드
-
----
-
-# 2. 서버 구축
-
-## 엔티티 생성
-
-User , MyVoca , Voca 엔티티를 생성하였다.
-
-### 1] User
-
-primary key : **id**
-**name,password,age,phone,wordsCount,level**로 구성된다.
-
-### 2] MyVoca
-
-primary key 인**id** 와 **english**,**korean** 으로 구성된다.
-
-### 3] Voca
-
-primary key 인 **id** 와 **english** , **korean** 으로 구성된다.
-
-### 4] MissionVoca
-
-voca테이블과 동일하며, 미션을 위한 단어장이다.
-
----
-
-## 서비스
-
-### 1] JoinService
-
-회원 가입시 id에 대한 중복 검사와 회원정보를 등록,로그인하는 서비스 기능을 제공하는 클래스이다. **@Service** 어노테이션은 해당 클래스가 서비스로서 빈으로 등록되게 한다.
-
-#### idCheck 메소드
-
-넘어온 id 값을 user table에서 찾은 후 값이 없는 경우 1을 값이 중복되는 경우 -1을 전송한다.
-
-#### saveUser 메소드
-
-넘어온 userDto 를 데이터베이스에 저장해주기 위하여 **entity**로 변경해준다. 해당 엔티티를 User 테이블에 저장한다. 반환은 Dto타입으로 해주기 위하여 entity를 다시 dto 로 변경한뒤 반환해준다.
-
-#### loginCheck 메소드
-
-넘어온 id값으로 가져온 user 객체의 password 값과 넘어온 password 값이 일치하는지 검사하여 일치하는 경우 1을 일치하지 않는 경우 -1을 반환한다.
-
-### 2] 단어찾기
-
-### 3] VocaService
-
-#### getMyVocas 메소드
-
-id값을 받아서 해당 사용자를 user 데이터베이스에서 찾은뒤 해당 사용자가 학습한 단어들을 MyVocaDto 타입으로 변환한뒤 list 로 반환해준다.
-
-### 4] 일일 미션- MissionService
-
-#### getMissionList 메소드
-
-id 값을 받아서 해당 사용자의 미션으로 할당된 리스트를 반환한다.
-해당 미션에는 camera 리스트와 listening 리스트가 존재한다.
-camera 는 카메라로 촬영할 리스트이며, listening은 들을 리스트이다.
-
-### 6] 게임
-
--03/07 일자: 카드 간 일치 불일치 이벤트 처리 완료. 일치할 경우 오픈된 상태 유지, 불일치하면 원래 상태로 카드 뒤집는다.
-
-- 남은 작업 : sprite 크기 조절, (입장, 퇴장 씬 생성), 시간 제한 ui 생성.
-- 논의 사항 : 난이도나 단계에 따른 카드 생성 수, 카드 배치
-
----
-
-## 컨트롤러
-
-### 1] JoinController
-
-회원가입과 아이디 중복검사,로그인의 컨트롤러를 제공하는 클래스이다.
-
-#### ** idCheck 메소드** : 퍼블릭IP:8080/abeec/join/{id} 의 **get**요청
-
-id 의 중복을 검사한다.
-
-- **request** : String 형태의 id - path variable
-- **response** : 중복시 "another id is required", 중복이 아닐시 id
-
-#### join 메소드 : 퍼블릭IP:8080/abeec/join 의 **post**요청
-
-회원가입 기능을 수행한다.
-
-- **request** : json - user 정보 ( id,password,age,phone,name)
-- **response** : 유효검사(validation)통과시 - user 정보 (id,password,age,phone,name,level,words_count)
-  ![](https://images.velog.io/images/yoojinjangjang/post/5d668986-c11a-4d03-9117-45a66656352e/image.png)
-
-  유효검사 미통과시 - 400에러와 해당 에러 field명,에러메세지  
-  ![](https://images.velog.io/images/yoojinjangjang/post/a2eb8cd4-6763-460b-86a3-fbd3c16c18f1/image.png)
-
-  > 해당 유효검사 항목은 밑의 **user dto** 부분에서 확인 가능하다.
-
-#### login 메소드 : `퍼블릭IP:8080/abeec/login?id=""&password=""` 의 get 요청
-
-로그인 기능을 수행한다.
-
-- **request** : String 형태의 id와 String 형태의 password - query parameter
-- **response** : login 완료시 1 , login 실패시 -1 을 전송
-
-### 2] 단어찾기
-
-[참고](https://bohyeon-n.github.io/deploy/web/image-upload.html)  
-[참고](https://eastflag.co.kr/fullstack/rest-with-spring/spring-rest_image/)
-
-### 3] VocaController
-
-각 사용자가 학습한 단어들을 반환해주는 클래스이다.
-
-#### GetVocaList 메소드 : 퍼블릭IP:8080/abeec/voca_list/{id}의 get 요청
-
-해당 id의 사용자가 학습한 단어 리스트를 반환한다.
-
-- **request** : String 형태의 id - path variable
-- **respone** :
-
-1. user id 가 db내에 존재시 - 단어리스트 (english,korean,image)  
-   ![](https://images.velog.io/images/yoojinjangjang/post/4d9bf219-0008-4558-bc1d-5e60e068e512/image.png)
-
-2. user id 가 db내에 존재하지 않을 시 - 400 에러
-
-### 4] MissionController
-
-#### GetMission 메소드 : 퍼블릭IP:8080/abeec/mission/{id}의 get 요청
-
-해당 id의 사용자가 학습해야할 미션 리스트를 반환한다.
-
-- **request** : String 형태의 id - path variable
-- **response** : MissionResDto 로서
-
-![](https://velog.velcdn.com/images/yoojinjangjang/post/18f8c63f-8a71-4a6c-8aab-5d43946258e5/image.png)
-
-위의 사진과 같은 형태의 json을 반환
-
----
-
-## DTO
-
-> 엔티티를 직접 교환하는 것이 아닌 클라이언트 단에서 사용할 데이터를 dto 로 구성한다.
-
-### 1] user dto
-
-사용자 dto이다.
-
-- **id** : not blank로 null,공백이 불가하다.
-- **name** : not blank
-- **password** : not blank , 글자수 : min 4~max 11
-- **age** : not blank, max 값이 100살
-- **phone** : 000-1234-1234 또는 01012341234 정규식 표현 -> `@Pattern(regexp = "^01([0|1|6|7|8|9])-?([0-9]{3,4})-?([0-9]{4})$") `
-- **wordsCount** : 맞힌 단어 개수
-- **level** : 레벨
-
-### 2] myvoca dto
-
-학습단어 dto이다.
-
-- **english** : 영단어
-- **korean** : 한국댠어
-- **image** : 이미지
-
-### 3] missionResDto
-
-미션 dto 이다.
-
-- **camera** : 촬영할 영단어 리스트
-- **listening** : 들을 영단어 리스트
-
----
-
-# 에러모음
-
-### 1] cannot resolve symbol
-
-[참고자료](https://ottl-seo.tistory.com/entry/IntelliJ-Cannot-resolve-symbol-%EC%97%90%EB%9F%AC-%ED%95%B4%EA%B2%B0)
