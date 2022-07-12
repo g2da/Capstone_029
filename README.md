@@ -27,7 +27,7 @@
     Git/Github
 
 ### *Frontend*
-    Native App : Flutter
+    Hybrid App : Flutter
 
 ### *Backend*
     Framework : Spring boot, Flask
